@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion des projets</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Gestion des projets</h1>
+
+  <!-- Section 1 : Informations Client -->
+  <form id="client-form" class="section">
+    <h2>1. Informations Client</h2>
+
+    <label>ID client :
+      <input type="text" name="idClient" required />
+    </label>
+
+    <label>Type :
+      <select name="typeClient" id="typeClient">
+        <option value="Personne physique">Personne physique</option>
+        <option value="Société">Société</option>
+        <option value="ADN">ADN</option>
+        <option value="Association">Association</option>
+        <option value="autre">Autre (ajouter manuellement)</option>
+      </select>
+    </label>
+    <div id="autreTypeContainer" class="field-separator">
+      <label>Préciser le type :
+        <input type="text" name="typeClientAutre" />
+      </label>
+    </div>
+
+    <label>Nom :
+      <input type="text" name="nom" required />
+    </label>
+
+    <label>Identifiant :
+      <input type="text" name="identifiant" />
+    </label>
+
+    <label>Adresse :
+      <input type="text" name="adresse" />
+    </label>
+
+    <label>Mobile :
+      <div class="phone-field">
+        <select name="mobile_country">
+          <!-- …codes pays… -->
+          <option value="+212">🇲🇦 +212 Maroc</option>
+        </select>
+        <input type="tel" name="mobile" pattern="\d{9}" placeholder="712345678" required />
+      </div>
+    </label>
+
+    <label>Fixe :
+      <div class="phone-field">
+        <select name="fixe_country">
+          <!-- …codes pays… -->
+          <option value="+212">🇲🇦 +212 Maroc</option>
+        </select>
+        <input type="tel" name="fixe" pattern="\d{9}" placeholder="123456789" />
+      </div>
+    </label>
+
+    <label>Fax :
+      <input type="tel" name="fax" />
+    </label>
+
+    <label>Email :
+      <input type="email" name="email" />
+    </label>
+
+    <label>Qualité :
+      <select name="qualite" id="qualite">
+        <option value="Maitre d'ouvrage">Maître d'ouvrage</option>
+        <option value="Mandataire">Mandataire</option>
+        <option value="Partie représentée">Partie représentée</option>
+      </select>
+    </label>
+
+    <div id="partieRepresenteeContainer" class="section field-separator">
+      <h3>Partie représentée</h3>
+      <table id="partieRepresenteeTable">
+        <thead>
+          <tr>
+            <th>Type</th><th>Nom</th><th>ID</th><th>Adresse</th>
+            <th>Mobile</th><th>Fixe</th><th>Fax</th><th>Email</th><th>Qualité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="partieRow">
+            <td><input type="text" name="pr_type" /></td>
+            <td><input type="text" name="pr_nom" /></td>
+            <td><input type="text" name="pr_id" /></td>
+            <td><input type="text" name="pr_adresse" /></td>
+            <td><input type="tel" name="pr_mobile" /></td>
+            <td><input type="tel" name="pr_fixe" /></td>
+            <td><input type="tel" name="pr_fax" /></td>
+            <td><input type="email" name="pr_email" /></td>
+            <td><input type="text" name="pr_qualite" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button type="submit">Enregistrer le client</button>
+  </form>
+
+  <div class="section">
+    <h3>Liste des Clients</h3>
+    <table id="client-table">
+      <thead>
+        <tr>
+          <th>ID client</th><th>Type</th><th>Nom</th><th>Identifiant</th>
+          <th>Adresse</th><th>Mobile</th><th>Fixe</th><th>Fax</th>
+          <th>Email</th><th>Qualité</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Section 2 : Informations Terrain -->
+  <form id="terrain-form" class="section">
+    <h2>2. Informations Terrain</h2>
+
+    <fieldset class="field-separator">
+      <legend>Situation</legend>
+      <label>Région :
+        <select name="region" id="regionSelect" required>
+          <option value="">-- Sélectionner --</option>
+          <option value="Tanger-Tetouan-Al Hoceima">Tanger-Tétouan-Al Hoceima</option>
+          <!-- …autres régions… -->
+        </select>
+      </label>
+      <label>Province :
+        <input type="text" name="province" placeholder="Nom de la province" required />
+      </label>
+      <label>Commune territoriale :
+        <input type="text" name="commune" placeholder="Nom de la commune" required />
+      </label>
+      <label>Ville / Centre :
+        <input type="text" name="ville" placeholder="Nom de la ville" required />
+      </label>
+    </fieldset>
+
+    <fieldset class="field-separator">
+      <legend>Barycentre</legend>
+      <label>X (longitude) :
+        <input type="number" step="any" name="baricentreX" required />
+      </label>
+      <label>Y (latitude) :
+        <input type="number" step="any" name="baricentreY" required />
+      </label>
+    </fieldset>
+
+    <fieldset class="field-separator">
+      <legend>Liste des coordonnées</legend>
+      <div id="coordsList"></div>
+      <button type="button" id="addCoordButton">Ajouter coordonnée</button>
+    </fieldset>
+
+    <label class="field-separator">Superficie :
+      <input type="number" name="superficie" step="any" placeholder="Ex : 1500" required />
+      <span>m²</span>
+    </label>
+
+    <label class="field-separator">Statut foncier :
+      <input type="text" name="statutFoncier" placeholder="Ex : Privé" required />
+    </label>
+
+    <label class="field-separator">Coût approximatif (m²) :
+      <input type="number" name="coutM2" step="any" placeholder="Ex : 2500" required />
+      <span>DH</span>
+    </label>
+
+    <button type="submit">Enregistrer le terrain</button>
+  </form>
+
+  <div class="section">
+    <h3>Liste des Terrains</h3>
+    <table id="terrain-table">
+      <thead>
+        <tr>
+          <th>Région</th><th>Province</th><th>Commune</th><th>Ville</th>
+          <th>Barycentre</th><th>Superficie</th><th>Statut foncier</th>
+          <th>Coût (DH)</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Section 3 : Informations Contrat -->
+  <form id="contrat-form" class="section">
+    <h2>3. Informations Contrat</h2>
+
+    <fieldset class="field-separator">
+      <legend>Contrat</legend>
+      <label for="signatureContrat">Signature du contrat (PDF) :</label>
+      <input type="file" id="signatureContrat" name="signatureContrat" accept="application/pdf" required />
+
+      <label for="visaContrat">Visa du contrat (PDF) :</label>
+      <input type="file" id="visaContrat" name="visaContrat" accept="application/pdf" />
+
+      <div>
+        <span>Dépôt dossier :</span><br/>
+        <label><input type="radio" name="depotPlateforme" value="oui" required /> Oui</label>
+        <label><input type="radio" name="depotPlateforme" value="non" /> Non</label>
+      </div>
+
+      <div>
+        <span>Avis favorable :</span><br/>
+        <label><input type="checkbox" name="avis[]" value="services_autre" /> Paiement services rendu autre</label>
+        <label><input type="checkbox" name="avis[]" value="services_pc" /> Paiement service rendu pc</label>
+        <label><input type="checkbox" name="avis[]" value="TNB" /> Paiement TNB</label>
+      </div>
+    </fieldset>
+
+    <div class="field-separator">
+      <legend>Missions</legend>
+      <div id="missionsList"></div>
+      <button type="button" id="addMissionButton">+ Ajouter mission</button>
+    </div>
+
+    <fieldset class="field-separator">
+      <legend>PV Réception Provisoire</legend>
+      <label>Date :
+        <input type="date" name="pvProvDate" required />
+      </label>
+      <label>Observations :
+        <textarea name="pvProvObs" rows="3"></textarea>
+      </label>
+    </fieldset>
+
+    <fieldset class="field-separator">
+      <legend>PV Réception Définitive (après 1 an)</legend>
+      <label>Date :
+        <input type="date" name="pvDefDate" required />
+      </label>
+      <label>Résultat :
+        <input type="text" name="pvDefResultat" />
+      </label>
+    </fieldset>
+
+    <button type="submit">Enregistrer le contrat</button>
+  </form>
+
+  <div class="section">
+    <h3>Liste des Contrats</h3>
+    <table id="contrat-table">
+      <thead>
+        <tr>
+          <th>Signature</th><th>Visa</th><th>Dépôt</th><th>Avis</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

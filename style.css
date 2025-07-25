@@ -1,0 +1,110 @@
+/* Global */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  color: #333;
+}
+.section {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Labels & inputs */
+label { display: block; margin-top: 10px; font-weight: 500; }
+input, select, textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 6px 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+button[type="submit"], button[type="button"] {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none; border-radius: 4px;
+  background-color: #0078d4; color: #fff;
+  cursor: pointer; transition: background-color 0.2s;
+}
+button[type="button"] {
+  background-color: #f0f0f0; color: #333; border: 1px solid #ccc;
+}
+button:hover { background-color: #005a9e; }
+button[type="button"]:hover { background-color: #e0e0e0; }
+
+/* Field separators */
+.field-separator { margin-bottom: 1rem; }
+
+/* Phone fields */
+.phone-field {
+  display: flex; align-items: center; gap: 8px;
+}
+.phone-field select, .phone-field input {
+  padding: 6px 8px; border: 1px solid #ccc; border-radius: 4px;
+}
+.phone-field input { flex: 1; }
+
+/* Tables summary */
+table {
+  width: 100%; border-collapse: collapse; margin-top: 10px;
+}
+th, td {
+  border: 1px solid #999; padding: 6px 10px; text-align: left;
+}
+thead { background: #f0f0f0; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* Partie Représentée */
+#partieRepresenteeContainer { display: none; overflow-x: auto; }
+#partieRepresenteeTable { table-layout: fixed; }
+#partieRepresenteeTable th, #partieRepresenteeTable td {
+  padding: 8px; vertical-align: middle;
+}
+#partieRepresenteeTable td input {
+  width: 100%; padding: 8px; border: 1px solid #bbb; border-radius: 4px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#partieRepresenteeTable td input:focus {
+  border-color: #0078d4; box-shadow: 0 0 5px rgba(0,120,212,0.3);
+  background: #fff;
+}
+
+/* Responsive for Partie Représentée */
+@media (max-width:600px) {
+  #partieRepresenteeTable, #partieRepresenteeTable thead,
+  #partieRepresenteeTable tbody, #partieRepresenteeTable th,
+  #partieRepresenteeTable td, #partieRepresenteeTable tr {
+    display: block;
+  }
+  #partieRepresenteeTable tr { margin-bottom:12px; }
+  #partieRepresenteeTable td {
+    position: relative; padding-left:50%;
+  }
+  #partieRepresenteeTable td:before {
+    position: absolute; top:8px; left:8px; width:45%;
+    white-space: nowrap; font-weight:600;
+    content: attr(data-label);
+  }
+}
+
+/* Missions */
+.mission-entry {
+  margin-bottom:1rem; padding:0.8rem;
+  border:1px solid #ddd; border-radius:4px; background:#fafafa;
+}
+.mission-entry label { display:block; margin-bottom:0.5rem; }
+.removeMission {
+  margin-top:0.5rem; padding:4px 8px; background:#e74c3c;
+  color:#fff; border:none; border-radius:4px; cursor:pointer;
+}
+.removeMission:hover { background:#c0392b; }
+
+/* Hide tables initially */
+#client-table, #terrain-table, #contrat-table { display:none; }

@@ -108,3 +108,11 @@ tbody tr:nth-child(even) { background: #fafafa; }
 
 /* Hide tables initially */
 #client-table, #terrain-table, #contrat-table { display:none; }
+
+.section h3 {
+  margin-top: 30px;
+}
+
+table th, table td {
+  text-align: center;
+}

@@ -9,14 +9,12 @@
 
   <h1>Gestion des projets</h1>
 
-  <!-- Section 1 : Informations Client -->
+  <!-- Section 1 : Informations Client -->
   <form id="client-form" class="section">
     <h2>1. Informations Client</h2>
-
     <label>ID client :
       <input type="text" name="idClient" required />
     </label>
-
     <label>Type :
       <select name="typeClient" id="typeClient">
         <option value="Personne physique">Personne physique</option>
@@ -26,52 +24,44 @@
         <option value="autre">Autre (ajouter manuellement)</option>
       </select>
     </label>
-    <div id="autreTypeContainer" class="field-separator">
+    <div id="autreTypeContainer" class="field-separator" style="display:none;">
       <label>Préciser le type :
         <input type="text" name="typeClientAutre" />
       </label>
     </div>
-
     <label>Nom :
       <input type="text" name="nom" required />
     </label>
-
     <label>Identifiant :
       <input type="text" name="identifiant" />
     </label>
-
     <label>Adresse :
       <input type="text" name="adresse" />
     </label>
-
     <label>Mobile :
       <div class="phone-field">
         <select name="mobile_country">
-          <!-- …codes pays… -->
           <option value="+212">🇲🇦 +212 Maroc</option>
+          <!-- …autres codes… -->
         </select>
         <input type="tel" name="mobile" pattern="\d{9}" placeholder="712345678" required />
       </div>
     </label>
-
     <label>Fixe :
       <div class="phone-field">
         <select name="fixe_country">
-          <!-- …codes pays… -->
           <option value="+212">🇲🇦 +212 Maroc</option>
+          <!-- …autres codes… -->
         </select>
         <input type="tel" name="fixe" pattern="\d{9}" placeholder="123456789" />
       </div>
     </label>
-
     <label>Fax :
       <input type="tel" name="fax" />
     </label>
-
     <label>Email :
       <input type="email" name="email" />
     </label>
-
     <label>Qualité :
       <select name="qualite" id="qualite">
         <option value="Maitre d'ouvrage">Maître d'ouvrage</option>
@@ -79,8 +69,7 @@
         <option value="Partie représentée">Partie représentée</option>
       </select>
     </label>
-
-    <div id="partieRepresenteeContainer" class="section field-separator">
+    <div id="partieRepresenteeContainer" class="section field-separator" style="display:none;">
       <h3>Partie représentée</h3>
       <table id="partieRepresenteeTable">
         <thead>
@@ -104,7 +93,6 @@
         </tbody>
       </table>
     </div>
-
     <button type="submit">Enregistrer le client</button>
   </form>
 
@@ -122,16 +110,15 @@
     </table>
   </div>
 
-  <!-- Section 2 : Informations Terrain -->
+  <!-- Section 2 : Informations Terrain -->
   <form id="terrain-form" class="section">
     <h2>2. Informations Terrain</h2>
-
     <fieldset class="field-separator">
       <legend>Situation</legend>
       <label>Région :
         <select name="region" id="regionSelect" required>
           <option value="">-- Sélectionner --</option>
-          <option value="Tanger-Tetouan-Al Hoceima">Tanger-Tétouan-Al Hoceima</option>
+          <option value="Tanger-Tetouan-Al Hoceima">Tanger-Tétouan-Al Hoceima</option>
           <!-- …autres régions… -->
         </select>
       </label>
@@ -145,37 +132,19 @@
         <input type="text" name="ville" placeholder="Nom de la ville" required />
       </label>
     </fieldset>
-
     <fieldset class="field-separator">
       <legend>Barycentre</legend>
-      <label>X (longitude) :
-        <input type="number" step="any" name="baricentreX" required />
-      </label>
-      <label>Y (latitude) :
-        <input type="number" step="any" name="baricentreY" required />
-      </label>
+      <label>X (longitude) :<input type="number" step="any" name="baricentreX" required /></label>
+      <label>Y (latitude) :<input type="number" step="any" name="baricentreY" required /></label>
     </fieldset>
-
     <fieldset class="field-separator">
       <legend>Liste des coordonnées</legend>
       <div id="coordsList"></div>
       <button type="button" id="addCoordButton">Ajouter coordonnée</button>
     </fieldset>
-
-    <label class="field-separator">Superficie :
-      <input type="number" name="superficie" step="any" placeholder="Ex : 1500" required />
-      <span>m²</span>
-    </label>
-
-    <label class="field-separator">Statut foncier :
-      <input type="text" name="statutFoncier" placeholder="Ex : Privé" required />
-    </label>
-
-    <label class="field-separator">Coût approximatif (m²) :
-      <input type="number" name="coutM2" step="any" placeholder="Ex : 2500" required />
-      <span>DH</span>
-    </label>
-
+    <label class="field-separator">Superficie :<input type="number" name="superficie" step="any" placeholder="1500" required /><span>m²</span></label>
+    <label class="field-separator">Statut foncier :<input type="text" name="statutFoncier" placeholder="Privé" required /></label>
+    <label class="field-separator">Coût approximatif (m²) :<input type="number" name="coutM2" step="any" placeholder="2500" required /><span>DH</span></label>
     <button type="submit">Enregistrer le terrain</button>
   </form>
 
@@ -193,24 +162,20 @@
     </table>
   </div>
 
-  <!-- Section 3 : Informations Contrat -->
+  <!-- Section 3 : Informations Contrat -->
   <form id="contrat-form" class="section">
     <h2>3. Informations Contrat</h2>
-
     <fieldset class="field-separator">
       <legend>Contrat</legend>
       <label for="signatureContrat">Signature du contrat (PDF) :</label>
       <input type="file" id="signatureContrat" name="signatureContrat" accept="application/pdf" required />
-
       <label for="visaContrat">Visa du contrat (PDF) :</label>
       <input type="file" id="visaContrat" name="visaContrat" accept="application/pdf" />
-
       <div>
         <span>Dépôt dossier :</span><br/>
         <label><input type="radio" name="depotPlateforme" value="oui" required /> Oui</label>
         <label><input type="radio" name="depotPlateforme" value="non" /> Non</label>
       </div>
-
       <div>
         <span>Avis favorable :</span><br/>
         <label><input type="checkbox" name="avis[]" value="services_autre" /> Paiement services rendu autre</label>
@@ -218,33 +183,21 @@
         <label><input type="checkbox" name="avis[]" value="TNB" /> Paiement TNB</label>
       </div>
     </fieldset>
-
     <div class="field-separator">
       <legend>Missions</legend>
       <div id="missionsList"></div>
       <button type="button" id="addMissionButton">+ Ajouter mission</button>
     </div>
-
     <fieldset class="field-separator">
       <legend>PV Réception Provisoire</legend>
-      <label>Date :
-        <input type="date" name="pvProvDate" required />
-      </label>
-      <label>Observations :
-        <textarea name="pvProvObs" rows="3"></textarea>
-      </label>
+      <label>Date :<input type="date" name="pvProvDate" required /></label>
+      <label>Observations :<textarea name="pvProvObs" rows="3"></textarea></label>
     </fieldset>
-
     <fieldset class="field-separator">
-      <legend>PV Réception Définitive (après 1 an)</legend>
-      <label>Date :
-        <input type="date" name="pvDefDate" required />
-      </label>
-      <label>Résultat :
-        <input type="text" name="pvDefResultat" />
-      </label>
+      <legend>PV Réception Définitive (après 1 an)</legend>
+      <label>Date :<input type="date" name="pvDefDate" required /></label>
+      <label>Résultat :<input type="text" name="pvDefResultat" /></label>
     </fieldset>
-
     <button type="submit">Enregistrer le contrat</button>
   </form>
 
@@ -260,6 +213,61 @@
     </table>
   </div>
 
+  <!-- Section 4 : Informations Facture -->
+  <form id="facture-form" class="section">
+    <h2>4. Informations Facture</h2>
+    <label>Numéro de Facture :<input type="text" name="num_fact" required /></label>
+    <label>Date Facture :<input type="date" name="date_fact" required /></label>
+    <label>Numéro de Contrat :<input type="text" name="num_contrat" required /></label>
+    <label>Date Contrat :<input type="date" name="date_contrat" required /></label>
+    <label>Client :<input type="text" name="client" required /></label>
+    <label>CIN / RC / ICE :<input type="text" name="cin_rc_ice" /></label>
+    <label>Qualité :<input type="text" name="qualite_facture" value="MAÎTRE D'OUVRAGE" /></label>
+    <label>Adresse :<input type="text" name="adresse_facture" /></label>
+    <label>Projet :<input type="text" name="projet_facture" /></label>
+    <label>Adresse Projet :<input type="text" name="adresse_projet" /></label>
+    <label>Commune :<input type="text" name="commune_facture" /></label>
+    <label>Numéro Autorisation :<input type="text" name="num_autorisation" /></label>
+    <label>Date Autorisation :<input type="date" name="date_autorisation" /></label>
+    <label>Date Achèvement Prestation :<input type="date" name="date_achevement_prest" /></label>
+    <label>ID Missions :<input type="text" name="id_missions" /></label>
+    <label>Consistance Missions :<textarea name="missions_accomplies" rows="3"></textarea></label>
+    <label>Montant HT :<input type="number" name="montant_ht" step="any" required /></label>
+    <label>Montant TVA :<input type="number" name="montant_tva" step="any" required /></label>
+    <label>Montant TTC :<input type="number" name="montant_ttc" step="any" required /></label>
+    <label>Date Réglement :<input type="date" name="date_reg" /></label>
+    <label>Mode Réglement :<input type="text" name="mode_reg" /></label>
+    <label>Réf Opération :<input type="text" name="ref_oper" /></label>
+    <label>Observation :<textarea name="observation" rows="3"></textarea></label>
+
+    <!-- Zone de signature -->
+    <div class="field-separator">
+      <label>Signature :</label>
+      <div class="signature-box"></div>
+    </div>
+
+    <button type="submit">Enregistrer la facture</button>
+  </form>
+
+  <div class="section">
+    <h3>Liste des Factures</h3>
+    <table id="facture-table">
+      <thead>
+        <tr>
+          <th>Num Facture</th><th>Date Facture</th><th>Num Contrat</th><th>Date Contrat</th>
+          <th>Client</th><th>CIN/RC/ICE</th><th>Qualité</th><th>Adresse</th>
+          <th>Projet</th><th>Adresse Projet</th><th>Commune</th><th>Num Autorisation</th>
+          <th>Date Autorisation</th><th>Date Achèvement</th><th>ID Missions</th><th>Consistance Missions</th>
+          <th>Montant HT</th><th>Montant TVA</th><th>Montant TTC</th><th>Date Réglement</th>
+          <th>Mode Réglement</th><th>Réf Opération</th><th>Observation</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- html2pdf.js pour génération PDF -->
+  <script src="https://unpkg.com/html2pdf.js@0.9.2/dist/html2pdf.bundle.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
